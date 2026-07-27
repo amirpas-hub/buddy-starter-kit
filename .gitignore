@@ -1,0 +1,13 @@
+# NEVER commit credentials, tokens, machine-specific config, logs, or personal data.
+creds.env
+env.local.sh
+*.creds
+*token*
+.cache/
+logs/
+state/
+*.bak-*
+*.log
+
+# OS noise
+.DS_Store

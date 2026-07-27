@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUDDY Cockpit — __NAME__</title>
+<style>
+  :root{--bg:#0e1116;--panel:#161b22;--line:#232a33;--ink:#e6edf3;--muted:#8b949e;
+    --green:#2ea043;--green-d:#238636;--amber:#d29922;--accent:#58a6ff}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px 60px}
+  header{border-bottom:1px solid var(--line);padding:22px 0 16px;margin-bottom:20px}
+  .brand{font-size:22px;font-weight:800;letter-spacing:-.02em}
+  .brand span{color:var(--green)}
+  .sub{color:var(--muted);font-size:13px;margin-top:3px}
+  .tabs{display:flex;gap:6px;margin:18px 0}
+  .tab{background:var(--panel);border:1px solid var(--line);color:var(--muted);
+    padding:8px 16px;border-radius:9px;cursor:pointer;font-size:14px;font-weight:600}
+  .tab.on{color:var(--ink);border-color:var(--green);background:#122016}
+  .view{display:none}.view.on{display:block}
+  h2{font-size:15px;font-weight:700;margin:22px 0 10px;display:flex;align-items:center;gap:8px}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:10px 0}
+  .empty{color:var(--muted);font-size:14px}
+  .flag{background:#1c1710;border-left:3px solid var(--amber);border-radius:0 8px 8px 0;
+    padding:10px 14px;color:#e3c07b;font-size:13px}
+  .btask{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .btask:last-child{border-bottom:none}
+  code{background:#0b0f14;border:1px solid var(--line);padding:1px 6px;border-radius:5px;color:var(--accent)}
+  .foot{color:var(--muted);font-size:12px;margin-top:32px;border-top:1px solid var(--line);padding-top:14px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="brand">BUDDY <span>Cockpit</span></div>
+  <div class="sub">__NAME__ · your deal digital twin</div>
+</div></header>
+
+<div class="wrap">
+  <div class="tabs">
+    <div class="tab on" data-view="today">☀️ Today</div>
+    <div class="tab" data-view="deals">📊 Deals &amp; Forecast</div>
+  </div>
+
+  <!-- ================= TODAY ================= -->
+  <div class="view on" id="today">
+    <h2>⏰ Next call — T-30 prep</h2>
+    <div id="buddy-nextcall"></div>
+
+    <h2>📤 Ready to send</h2>
+    <div id="buddy-ready"></div>
+
+    <h2>✅ Today's checklist <span class="sub" data-buddy-progress></span></h2>
+    <div class="panel" id="buddy-checklist">
+      <div class="empty">Nothing here yet. Open pi and say <code>gm</code> — BUDDY will run your
+      morning routine and fill this in with today's priorities, calendar, and open loops.</div>
+    </div>
+  </div>
+
+  <!-- ============ DEALS & FORECAST ============ -->
+  <div class="view" id="deals">
+    <h2>📊 Pipeline</h2>
+    <div class="panel">
+      <div class="empty">Your pipeline appears here after your first <code>gm</code>. BUDDY builds
+      this from <em>your</em> CRM, Gmail (incl. Sent) and calendar — RAG status, forecast, and triage.</div>
+    </div>
+    <div class="flag">First run: say <code>gm</code> in pi. Everything on this page is yours and yours only —
+    it reads your own Shopify access, never anyone else's.</div>
+  </div>
+
+  <div class="foot">BUDDY Cockpit · rebuilds every morning · draft-only trust boundary (nothing sends itself)</div>
+</div>
+
+<script>
+  // tab switching
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.addEventListener('click', function(){
+      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+      document.querySelectorAll('.view').forEach(function(x){x.classList.remove('on')});
+      t.classList.add('on');
+      document.getElementById(t.dataset.view).classList.add('on');
+    });
+  });
+</script>
+<script src="todo.js"></script>
+</body>
+</html>
