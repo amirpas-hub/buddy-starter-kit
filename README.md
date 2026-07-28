@@ -41,7 +41,7 @@ Run the checker anytime:
 ## 🚀 Install
 
 ```bash
-git clone https://github.com/amirpas-hub/buddy-starter-kit.git
+git clone https://github.com/shopify-playground/buddy-starter-kit.git
 cd buddy-starter-kit
 ./install.sh
 ```
